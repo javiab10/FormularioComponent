@@ -1,0 +1,342 @@
+<div class="container p-5">
+    <div class="row ">
+        <div class="col px-5">
+            <h1 class="display-5 mb-4" style="color: #19255A;">Añadir contacto</h1>
+            <form class="form px-5 py-4 border rounded shadow" style="--bs-border-opacity: .5;" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+                <div class="row row-cols-4 text-center">
+                    <div class="col mb-2" (click)="onChoose(1)" style="cursor: pointer;">Datos Personales</div>
+                    <div class="col mb-2" (click)="onChoose(2)" style="cursor: pointer;">Datos Académicos</div>
+                    <div class="col mb-2" (click)="onChoose(3)" style="cursor: pointer;">Datos Profesionales</div>
+                    <div class="col mb-2" (click)="onChoose(4)" style="cursor: pointer;">Datos Generales</div>
+                </div>
+
+                <!--DATOS PERSONALES-->
+                @if(window === 1){
+                    <div class="row mb-4">
+                        <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                    </div>
+                    <div class="row mb-5">
+
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="name" class="form-label">Nombre *</label>
+                            <input type="text" id="name" class="form-control" formControlName="name">
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="surname" class="form-label">Apellido *</label>
+                            <input type="text" id="surname" class="form-control" formControlName="surname">
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="phone" class="form-label">Teléfono *</label>
+                            <input type="text" id="phone" class="form-control" formControlName="phone">
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" formControlName="email">
+                            @if(contactForm.errors?.['email']){
+                                <div class="alert alert-danger">El email es obligatorio</div>
+                            }
+                        </div>
+
+                        <label for="country" class="form-label">Ubicación</label>
+                        <div class="mb-3 col-md-3">
+                            <select id="country" class="form-select" formControlName="country">
+                                <option disabled selected>País</option>
+                                @for(country of countriesList; track $index){
+                                    <option value="{{country.getId()}}">{{country?.getDescription()}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <select id="ccaa" class="form-select" formControlName="ccaa">
+                                <option disabled selected>CCAA</option>
+                                @for(ccaa of ccaaList; track $index){
+                                    <option value="{{ccaa.getId()}}">{{ccaa?.getDescription()}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <select id="province" class="form-select" formControlName="province">
+                                <option disabled selected>Provincia</option>
+                                @for(province of provinceList; track $index){
+                                    <option value="{{province.getId()}}">{{province?.getDescription()}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <input type="text" id="place" class="form-control" formControlName="place" placeholder="Localidad">
+                        </div>
+
+                    </div>
+
+                    <!--SIGUIENTE-->
+                    <div class="row justify-content-end">
+                        <div class="col-2 text-end p-0" (click)="onNext()">
+                            <button type="button" class="btn">Siguiente</button>
+                        </div>
+                    </div>
+
+                <!--DATOS ACADÉMICOS-->
+                }@else if(window === 2){
+                    <div class="row mb-4">
+                        <div class="col-3"></div>
+                        <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <!--FORMACIÓN-->
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <p class="fs-6 border-bottom">FORMACIÓN</p>
+                        </div>
+
+                        <div class="col mt-4" formArrayName="educations">
+                            @for(education of educations.controls; track education; let index = $index){
+                                <p class="fs-6">{{index + 1}}.</p>
+                                <div class="row" [formGroupName]="index">
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Nivel</label>
+                                        <select id="studyLevel" class="form-select" formControlName="level">
+                                            <option disabled selected>Nivel de Estudios</option>
+                                            @for(level of academicLevelList; track level.getId()){
+                                                <option value="{{level.getId()}}">{{level.getDescription()}}</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Descripción</label>
+                                        <input type="text" id="studyDescription" class="form-control" formControlName="description" placeholder="Ej. Ingeniería Informática">
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn me-4" style="background-color: #19255A; color: white;" (click)="removeEducation(index)">Quitar Formación -</button>                               
+                            }
+                            <button type="button" class="btn" style="background-color: #19255A; color: white;" (click)="addEducation()">Añadir Formación
+                                +</button>
+                        </div>
+                    </div>
+
+                    <!-- IDIOMAS-->
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <p class="fs-6 border-bottom">IDIOMAS</p>
+                        </div>
+
+                        <div class="col mt-4" formArrayName="languages">
+                            @for(language of languages.controls; track language; let index = $index){
+                                <p class="fs-6">{{index+1}}.</p>
+                                <div class="row" [formGroupName]="index">
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Idioma</label>
+                                        <input type="text" id="language" class="form-control" formControlName="language" placeholder="Ej. Euskera">
+                                    </div>
+        
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Nivel</label>
+                                        <select id="languageLevel" class="form-select" formControlName="level">
+                                            <option disabled selected>Nivel de Idioma</option>
+                                            @for(level of languageLevelList; track level.getId()){
+                                                <option value="{{level.getId()}}">{{level.getDescription()}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn me-4" style="background-color: #19255A; color: white;" (click)="removeLanguage(index)">Quitar Idioma -</button>
+                            }
+                            <button type="button" class="btn" style="background-color: #19255A; color: white;" (click)="addLanguage()">Añadir
+                                Idioma
+                                +</button>
+                        </div>
+                    </div>
+
+                    <!--ATRÁS || SIGUIENTE-->
+                    <div class="row justify-content-between">
+                        <div class="col-2">
+                            <button type="button" class="btn text-start p-0" (click)="onPrev()">Atrás</button>
+                        </div>
+                        <div class="col-2 text-end p-0">
+                            <button type="button" class="btn" (click)="onNext()">Siguiente</button>
+                        </div>
+                    </div>
+
+                <!--DATOS PROFESIONALES-->
+                }@else if(window === 3){
+                    <div class="row mb-4">
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                        <div class="col-3"></div>
+                    </div>
+                    
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <p class="fs-6 border-bottom">EXPERIENCIA LABORAL</p>
+                        </div>
+
+                        <div class="col mt-4" formArrayName="workExperiences">
+                            @for(experience of workExperiences.controls; track experience; let index = $index){
+                                <p class="fs-6">{{index + 1}}.</p>
+                                <div class="row mb-2" [formGroupName]="index">
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Puesto</label>
+                                        <input type="text" id="workPosition" class="form-control" formControlName="position">
+                                    </div>
+
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Descripción</label>
+                                        <input type="text" id="workDescription" class="form-control" formControlName="description">
+                                    </div>
+                                    
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Empresa</label>
+                                        <input type="text" id="workCompany" class="form-control" formControlName="company">
+                                    </div>
+                                    
+                                    <div class="mb-3 col-lg-6 col-md-12">
+                                        <label class="form-label">Ubicación</label>
+                                        <input type="text" id="workLocation" class="form-control" formControlName="location">
+                                    </div>
+
+                                    <div class="mb-3 col-lg-3 col-md-12">
+                                        <label class="form-label">Fecha Inicio</label>
+                                        <input type="date" id="workStartDate" class="form-control" formControlName="startDate">
+                                    </div>
+                                
+                                    <div class="mb-3 col-lg-3 col-md-12">
+                                        <label class="form-label">Fecha Fin</label>
+                                        <input type="date" id="workStartDate" class="form-control" formControlName="endDate">
+                                    </div>
+
+                                    <!--Toggle-->
+                                    <div class="mb-3 col-6 d-flex flex-column justify-content-around">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Puesto en el sector</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked
+                                                (click)="toggle()" formControlName="relatedToOurIndustry">
+                                        </div>
+                                    </div>
+
+                                    @if(workExperiences.at(index).get('relatedToOurIndustry')?.value){
+                                        <div class="mb-3 col-lg-6 col-md-12">
+                                            <label class="form-label">Tecnologías</label>
+                                            <select id="workTechnologies" class="form-select" multiple formControlName="workTechnologies">
+                                                <option disabled selected>Elige una o varias tecnologías</option>
+                                                @for(technology of technologyList; track technology.getId()){
+                                                    <option value="{{technology.getId()}}">{{technology.getDescription()}}</option>
+                                                }
+                                            </select>
+                                        </div>
+        
+                                        <div class="mb-3 col-lg-6 col-md-12">
+                                            <label class="form-label">Nivel Hiberus</label>
+                                            <select id="hiberusLevel" class="form-select" formControlName="hiberusLevel">
+                                                <option disabled selected>Elige un nivel</option>
+                                                @for(hiberusLevel of hiberusLevelList; track hiberusLevel.getId()){
+                                                <option value="{{hiberusLevel.getDescription()}}">{{hiberusLevel.getDescription()}}</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    }
+                                </div>
+
+                                <button type="button" class="btn me-4" style="background-color: #19255A; color: white;" (click)="removeWorkExperience(index)">Quitar Experiencia Laboral -</button>
+                            }
+                            <button type="button" class="btn" style="background-color: #19255A; color: white;" (click)="addWorkExperience()">Añadir
+                                Experiencia Laboral
+                                +</button>
+                        </div>
+                    </div>
+
+                    <!--ATRÁS || SIGUIENTE-->
+                    <div class="row justify-content-between">
+                        <div class="col-2">
+                            <button type="button" class="btn text-start p-0" (click)="onPrev()">Atrás</button>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn text-end p-0" (click)="onNext()">Siguiente</button>
+                        </div>
+                    </div>
+
+                <!--DATOS GENERALES-->
+                }@else{
+                    <div class="row mb-4">
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="languageLevel" class="form-label">Rango Salarial</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                                </div>
+                                <div class="col">
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                                </div>
+                            </div>
+                            
+                            <div class="container d-flex p-0 gap-3">
+                                <input type="number" step="1000" min="16000" class="form-control" placeholder="salario min" formControlName="minSalary">
+                                <input type="number" step="1000" min="16000" class="form-control" placeholder="salario max" formControlName="maxSalary">
+                            </div> 
+                                
+                        </div>
+                        
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="languageLevel" class="form-label">Tecnologías que domina</label>
+                            <select id="languageLevel" class="form-select" multiple formControlName="technologies">
+                                <option disabled selected>Elige </option>
+                                @for(technology of technologyList; track technology.getId()){
+                                    <option value="{{technology.getId()}}">{{technology.getDescription()}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="languageLevel" class="form-label">Fuente de Búsqueda</label>
+                            <select id="languageLevel" class="form-select" formControlName="source">
+                                <option disabled selected></option>
+                                @for(source of sourceList; track source.getId()){
+                                    <option value="{{source.getId()}}">{{source.getDescription()}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-12">
+                            <label for="languageLevel" class="form-label">Estado</label>
+                            <select id="languageLevel" class="form-select" formControlName="state">
+                                <option disabled selected></option>
+                                @for(state of stateList; track state.getId()){
+                                    <option value="{{state.getId()}}">{{state.getDescription()}}</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!--ATRÁS || GUARDAR-->
+                    <div class="row justify-content-between">
+                        <div class="col-2">
+                            <button type="button" class="btn text-start p-0" (click)="onPrev()">Atrás</button>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn">Guardar</button>
+                        </div>
+                    </div>
+                }
+
+            </form>
+        </div>
+    </div>
+</div>
+

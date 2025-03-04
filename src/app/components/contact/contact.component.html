@@ -1,0 +1,56 @@
+<div class="container border rounded-4 shadow p-4 mb-5 w-75 bg-light">
+    <p>{{contact?.getName()}}</p>
+
+    <p>{{contact?.getPhone()}}</p>
+
+    <p>{{contact?.getEmail()}}</p>
+
+    
+    
+    <div class="container mt-1 mb-1 border bg-white">
+        <p>{{contact?.getLocation()?.getPais()?.getDescription()}}</p>
+        <p>{{contact?.getLocation()?.getCcaa()?.getDescription()}}</p>
+        <p>{{contact?.getLocation()?.getProvincia()?.getDescription()}}</p>
+        <p>{{contact?.getLocation()?.getLocalidad()?.getDescription()}}</p>
+    </div>
+    <div class="container mt-1 mb-1 border bg-white">
+        @for(language of contact?.getLanguages(); track language.getId()){
+            <p>{{language.getLanguage()}}: {{language.getLevel().getDescription()}}</p>
+        }
+    </div>
+
+    <div class="container mt-1 mb-1 border bg-white">
+        @for(education of contact?.getEducation(); track education.getId()){
+            <p>{{education.getAcademicLevel().getDescription()}}: {{education.getDescription()}}</p>
+        }
+    </div>
+
+    <div class="container mt-1 mb-1 border bg-white">
+        @for(work of contact?.getWorkExperiences(); track work.getId()){
+            <p>{{ work.getPosition() }}, {{ work.getCompany() }}, {{ work.getLocation() }}</p>
+            <p>{{ work.getStartDate() | formatDate }} - {{ work.getEndDate() | formatDate }}</p>
+            @if(work.getRelatedToOurIndustry()){
+                <p>Relacionado con el sector: SÍ</p>
+            }@else{
+                <p>Relacionado con el sector: NO</p>
+            }
+            <hr>
+            
+        }
+    </div>
+
+    <p>{{contact?.getSource()?.getDescription()}}</p>
+
+    <div class="container mt-1 mb-1 border bg-white">
+        @for(technology of contact?.getTechnologies(); track technology.getId()){
+            <p>{{technology.getDescription()}}</p>
+        }
+    </div>
+
+    <p>Rango Salarial: {{contact?.getMinSalary()}}€ - {{contact?.getMaxSalary()}}€</p>
+
+    <p>{{contact?.getState()?.getDescription()}}</p>
+
+    <button type="button" class="btn btn-danger mb-3" (click)="deleteContact(contact?.getId() ?? -1)">Eliminar</button>
+    
+</div>

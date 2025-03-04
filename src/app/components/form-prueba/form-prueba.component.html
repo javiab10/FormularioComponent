@@ -1,0 +1,78 @@
+
+<!--FORMULARIO DINÁMICO SIMPLE-->
+<div class="container d-flex justify-content-center mt-5">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-50 ">
+        <div class="row">
+            <div class="col">
+                <label for="name" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="col">
+                <label for="surname" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" formControlName="surname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="phone">Teléfono</label>
+                <input type="text" id="phone" class="form-control" formControlName="phone">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div formArrayName="languages">
+                    @for(language of languages.controls; track language){
+                        <input type="text" class="form-control" [formControlName]="$index">
+                        <button type="button" class="btn btn-danger" (click)="removeLanguage($index)">Eliminar</button>
+                    }
+                    <button type="button" class="btn btn-success" (click)="addLanguage()">Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--FORMULARIO DINÁMICO CON MÁS DE UN INPUT-->
+<div class="container d-flex justify-content-center mt-5">
+    <form [formGroup]="studiesForm" (ngSubmit)="onStudiesSubmit()" class="w-50 ">
+        <div class="row">
+            <div class="col">
+                <label for="name" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            
+            <div class="col" formArrayName="studies">
+                @for(study of studies.controls; track study; let index = $index){
+                    <div class="row" [formGroupName]="index">
+                        <label for="level" class="form-label">Nivel</label>
+                        <select class="form-control" formControlName="level">
+                            @for(level of academicLevels; track level.getId()){
+                                <option value="level.id">{{level.getDescription()}}</option>
+                            }
+                        </select>
+                        
+                        <label for="description" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" formControlName="description">
+                        
+                    </div>
+
+                    <button type="button" class="btn btn-danger" (click)="removeStudy(index)">Eliminar</button>                    
+                }
+
+                <button type="button" class="btn btn-success" (click)="addStudy()">Agregar</button>
+            </div>
+            
+
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

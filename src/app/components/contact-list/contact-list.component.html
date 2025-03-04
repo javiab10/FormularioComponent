@@ -1,0 +1,5 @@
+<div class="container p-5">
+    @for(contact of contacts; track contact.getId()){
+        <app-contact [contact]="contact"></app-contact>
+    }
+</div>
