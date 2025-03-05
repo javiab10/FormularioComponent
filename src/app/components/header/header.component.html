@@ -2,17 +2,17 @@
     <nav>
         <ul class="d-flex justify-content-center gap-5 p-0">
             @if(nav === 1){
-                <li (click)="choose(1)" style="border-bottom: #19255A 2px solid;"><a routerLink="/formPrueba">Form Prueba</a></li>
-                <li (click)="choose(2)"><a routerLink="/formAdd">Añadir Contacto</a></li>
-                <li (click)="choose(3)"><a routerLink="/contacts">Contactos</a></li>
+                <li  style="border-bottom: #19255A 2px solid;"><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
+                <li ><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
+                <li ><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
             }@else if(nav === 2){
-                <li (click)="choose(1)"><a routerLink="/formPrueba">Form Prueba</a></li>
-                <li (click)="choose(2)" style="border-bottom: #19255A 2px solid;"><a routerLink="/formAdd">Añadir Contacto</a></li>
-                <li (click)="choose(3)"><a routerLink="/contacts">Contactos</a></li>
+                <li><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
+                <li style="border-bottom: #19255A 2px solid;"><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
+                <li><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
             }@else{
-                <li (click)="choose(1)"><a routerLink="/formPrueba">Form Prueba</a></li>
-                <li (click)="choose(2)"><a routerLink="/formAdd">Añadir Contacto</a></li>
-                <li (click)="choose(3)" style="border-bottom: #19255A 2px solid;"><a routerLink="/contacts">Contactos</a></li>
+                <li><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
+                <li><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
+                <li style="border-bottom: #19255A 2px solid;"><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
             }
             
         </ul>
