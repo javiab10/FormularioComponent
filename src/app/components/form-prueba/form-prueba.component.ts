@@ -70,6 +70,8 @@ export class FormPruebaComponent {
       alert("formulario invalido");
     }
     console.log(this.contactForm.value);
+    console.log(this.PersonalData.value);
+    console.log(this.PersonalData.get('name')?.value);
   }
   
 

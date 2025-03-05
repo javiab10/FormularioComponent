@@ -1,0 +1,67 @@
+<div class="row mb-5" [formGroup]="academicDataForm">
+    <!--FORMACIÓN-->
+    <div class="row mb-5">
+        <div class="col-12">
+            <p class="fs-6 border-bottom">FORMACIÓN</p>
+        </div>
+
+        <div class="col mt-4" formArrayName="educations">
+            @for(education of educations.controls; track education; let index = $index){
+                <p class="fs-6">{{index + 1}}.</p>
+                <div class="row" [formGroupName]="index">
+                    <div class="mb-3 col-lg-6 col-md-12">
+                        <label class="form-label">Nivel</label>
+                        <select id="studyLevel" class="form-select" formControlName="level">
+                            <option disabled selected>Nivel de Estudios</option>
+                            @for(level of academicLevelList; track level.getId()){
+                                <option value="{{level.getId()}}">{{level.getDescription()}}</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-12">
+                        <label class="form-label">Descripción</label>
+                        <input type="text" id="studyDescription" class="form-control" formControlName="description" placeholder="Ej. Ingeniería Informática">
+                    </div>
+                </div>
+
+                <button type="button" class="btn me-4" style="background-color: #19255A; color: white;" (click)="removeEducation(index)">Quitar Formación -</button>                               
+            }
+            <button type="button" class="btn" style="background-color: #19255A; color: white;" (click)="addEducation()">Añadir Formación
+                +</button>
+        </div>
+    </div>
+
+    <!-- IDIOMAS-->
+    <div class="row mb-5">
+        <div class="col-12">
+            <p class="fs-6 border-bottom">IDIOMAS</p>
+        </div>
+
+        <div class="col mt-4" formArrayName="languages">
+            @for(language of languages.controls; track language; let index = $index){
+                <p class="fs-6">{{index+1}}.</p>
+                <div class="row" [formGroupName]="index">
+                    <div class="mb-3 col-lg-6 col-md-12">
+                        <label class="form-label">Idioma</label>
+                        <input type="text" id="language" class="form-control" formControlName="language" placeholder="Ej. Euskera">
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-12">
+                        <label class="form-label">Nivel</label>
+                        <select id="languageLevel" class="form-select" formControlName="level">
+                            <option disabled selected>Nivel de Idioma</option>
+                            @for(level of languageLevelList; track level.getId()){
+                                <option value="{{level.getId()}}">{{level.getDescription()}}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="btn me-4" style="background-color: #19255A; color: white;" (click)="removeLanguage(index)">Quitar Idioma -</button>
+            }
+            <button type="button" class="btn" style="background-color: #19255A; color: white;" (click)="addLanguage()">Añadir
+                Idioma
+                +</button>
+        </div>
+    </div>
+</div>

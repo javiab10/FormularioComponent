@@ -5,14 +5,22 @@
                 <li  style="border-bottom: #19255A 2px solid;"><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
                 <li ><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
                 <li ><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
+                <li><a (click)="choose(4)" routerLink="/dividedForm">Divided Form</a></li>
             }@else if(nav === 2){
                 <li><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
                 <li style="border-bottom: #19255A 2px solid;"><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
                 <li><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
-            }@else{
+                <li><a (click)="choose(4)" routerLink="/dividedForm">Divided Form</a></li>
+            }@else if (nav === 3){
                 <li><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
                 <li><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
                 <li style="border-bottom: #19255A 2px solid;"><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
+                <li><a (click)="choose(4)" routerLink="/dividedForm">Divided Form</a></li>
+            }@else{
+                <li><a (click)="choose(1)" routerLink="/formPrueba">Form Prueba</a></li>
+                <li><a (click)="choose(2)" routerLink="/formAdd">Añadir Contacto</a></li>
+                <li><a (click)="choose(3)" routerLink="/contacts">Contactos</a></li>
+                <li style="border-bottom: #19255A 2px solid;"><a (click)="choose(4)" routerLink="/dividedForm">Divided Form</a></li>
             }
             
         </ul>

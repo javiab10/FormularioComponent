@@ -275,7 +275,6 @@ export class FormAddContactComponent {
       });
     }
     
-    
     //Source
     const sourceId: number = this.contactForm.get('source')?.value;
     const sourceDescription: string = this.sourceService.getSourceById(sourceId)?.getDescription() ?? '';

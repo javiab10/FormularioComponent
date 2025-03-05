@@ -1,0 +1,58 @@
+<div class="container p-5">
+    <h1 class="display-5 mx-4 mb-4" style="color: #19255A;">Añadir contacto</h1>
+    <form class="form mx-4 px-5 py-4 border rounded shadow" style="--bs-border-opacity: .5;" (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="row row-cols-4 text-center">
+            @for(section of sections; track $index){
+                <div class="col mb-2" (click)="onChoose(section.id)" style="cursor: pointer;">
+                    {{ section.label }}
+                </div>
+            }
+        </div>
+
+            @if(selectedSection === 1){
+                <div class="row mb-4">
+                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                </div>
+
+                <app-divided-form-personal [personalDataForm]="PersonalData"></app-divided-form-personal>
+            }
+
+            @if(selectedSection === 2){
+                <div class="row mb-4">
+                    <div class="col-3"></div>
+                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                </div>
+
+                <app-divided-form-academic [academicDataForm]="AcademicData"></app-divided-form-academic>
+            }
+
+            @if(selectedSection === 3){
+                <div class="row mb-4">
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                    <div class="col-3"></div>
+                </div>
+
+                <app-divided-form-profesional [profesionalDataForm]="ProfesionalData"></app-divided-form-profesional>
+            }
+
+            @if(selectedSection === 4){
+                <div class="row mb-4">    
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                </div>
+
+                <app-divided-form-general [generalDataForm]="GeneralData"></app-divided-form-general>
+            }
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>

@@ -1,0 +1,50 @@
+<div class="row mb-5" [formGroup]="generalDataForm">
+    <div class="mb-3 col-lg-6 col-md-12">
+        <label for="languageLevel" class="form-label">Rango Salarial</label>
+        <div class="row">
+            <div class="col">
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+            </div>
+            <div class="col">
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+            </div>
+        </div>
+        
+        <div class="container d-flex p-0 gap-3">
+            <input type="number" step="1000" min="16000" class="form-control" placeholder="salario min" formControlName="minSalary">
+            <input type="number" step="1000" min="16000" class="form-control" placeholder="salario max" formControlName="maxSalary">
+        </div> 
+            
+    </div>
+    
+    <div class="mb-3 col-lg-6 col-md-12">
+        <label for="languageLevel" class="form-label">Tecnologías que domina</label>
+        <select id="languageLevel" class="form-select" multiple formControlName="technologies">
+            <option disabled selected>Elige </option>
+            @for(technology of technologyList; track technology.getId()){
+                <option value="{{technology.getId()}}">{{technology.getDescription()}}</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3 col-lg-6 col-md-12">
+        <label for="languageLevel" class="form-label">Fuente de Búsqueda</label>
+        <select id="languageLevel" class="form-select" formControlName="source">
+            <option disabled selected></option>
+            @for(source of sourceList; track source.getId()){
+                <option value="{{source.getId()}}">{{source.getDescription()}}</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3 col-lg-6 col-md-12">
+        <label for="languageLevel" class="form-label">Estado</label>
+        <select id="languageLevel" class="form-select" formControlName="state">
+            <option disabled selected></option>
+            @for(state of stateList; track state.getId()){
+                <option value="{{state.getId()}}">{{state.getDescription()}}</option>
+            }
+        </select>
+    </div>
+
+</div>
