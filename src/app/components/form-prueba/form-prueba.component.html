@@ -2,22 +2,25 @@
 <!--FORMULARIO DINÁMICO SIMPLE-->
 <div class="container d-flex justify-content-center mt-5">
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-50 ">
-        <div class="row">
-            <div class="col">
+        
+        
+        
+            <app-form-prueba1 [personalData]="PersonalData"></app-form-prueba1>
+            <!--<div class="col-6">
                 <label for="name" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" formControlName="name">
             </div>
-            <div class="col">
+
+            <div class="col-6">
                 <label for="surname" class="form-label">Apellido:</label>
                 <input type="text" class="form-control" formControlName="surname">
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
+        
+            <div class="col-6">
                 <label for="phone">Teléfono</label>
                 <input type="text" id="phone" class="form-control" formControlName="phone">
-            </div>
-        </div>
+            </div>-->
+         
         <div class="row">
             <div class="col">
                 <div formArrayName="languages">
