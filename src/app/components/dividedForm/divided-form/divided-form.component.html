@@ -9,50 +9,50 @@
             }
         </div>
 
-            @if(selectedSection === 1){
-                <div class="row mb-4">
-                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
-                    <div class="col-3"></div>
-                    <div class="col-3"></div>
-                    <div class="col-3"></div>
-                </div>
+        @if(selectedSection === 1){
+            <div class="row mb-4">
+                <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+            </div>
 
-                <app-divided-form-personal [personalDataForm]="PersonalData"></app-divided-form-personal>
-            }
+            <app-divided-form-personal [personalDataForm]="PersonalData"></app-divided-form-personal>
+        }
 
-            @if(selectedSection === 2){
-                <div class="row mb-4">
-                    <div class="col-3"></div>
-                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
-                    <div class="col-3"></div>
-                    <div class="col-3"></div>
-                </div>
+        @if(selectedSection === 2){
+            <div class="row mb-4">
+                <div class="col-3"></div>
+                <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+            </div>
 
-                <app-divided-form-academic [academicDataForm]="AcademicData"></app-divided-form-academic>
-            }
+            <app-divided-form-academic [academicDataForm]="AcademicData"></app-divided-form-academic>
+        }
 
-            @if(selectedSection === 3){
-                <div class="row mb-4">
-                    <div class="col-3"></div>
-                    <div class="col-3"></div>
-                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
-                    <div class="col-3"></div>
-                </div>
+        @if(selectedSection === 3){
+            <div class="row mb-4">
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+                <div class="col-3"></div>
+            </div>
 
-                <app-divided-form-profesional [profesionalDataForm]="ProfesionalData"></app-divided-form-profesional>
-            }
+            <app-divided-form-profesional [profesionalDataForm]="ProfesionalData"></app-divided-form-profesional>
+        }
 
-            @if(selectedSection === 4){
-                <div class="row mb-4">    
-                    <div class="col-3"></div>
-                    <div class="col-3"></div>
-                    <div class="col-3"></div>
-                    <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
-                </div>
+        @if(selectedSection === 4){
+            <div class="row mb-4">    
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="col-3" style="height: 1px; background-color: #19255A;"></div>
+            </div>
 
-                <app-divided-form-general [generalDataForm]="GeneralData"></app-divided-form-general>
-            }
+            <app-divided-form-general [generalDataForm]="GeneralData"></app-divided-form-general>
+        }
 
-            <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>

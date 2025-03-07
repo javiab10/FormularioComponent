@@ -80,6 +80,7 @@ export class DividedFormComponent {
       return;
     }
     console.log(this.form.value);
+    this.form.reset();
   }
 
 }

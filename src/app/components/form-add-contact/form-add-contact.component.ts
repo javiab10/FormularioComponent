@@ -304,6 +304,7 @@ export class FormAddContactComponent {
     )
 
     this.contactService.addContact(newContact);
+    this.contactForm.reset();
     
     console.log(newContact);
   }
