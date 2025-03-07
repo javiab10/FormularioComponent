@@ -30,8 +30,44 @@
                 </div>
 
                 <div class="col-9 p-4">
-                    <div class="">
-                        <h1 class="display-6 border-bottom pb-2">Rellena los Datos Generales</h1>
+                    <div class="row p-2 g-4">
+                        <h1 class="display-6 ">Rellena los Datos Generales</h1>
+                        
+                        <div class="col-6">
+                            <label for="" class="form-label">Nombre</label>
+                            <input type="text" class="form-control bg-dark text-white">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="" class="form-label">Tipo</label>
+                            <select class="form-control bg-dark text-white">
+                                <option disabled selected>Selecciona una opción</option>
+                                <option value="">Proyecto</option>
+                                <option value="">Charla</option>
+                                <option value="">Taller</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="" class="form-label">Descripción</label>
+                            <textarea  class="form-control bg-dark text-white"></textarea>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="" class="form-label">Fecha Inicio</label>
+                            <input type="date" class="form-control bg-dark text-white">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="" class="form-label">Fecha Fin</label>
+                            <input type="date" class="form-control bg-dark text-white">
+                        </div>
+
+                        <div class="col-3">
+                            <label for="" class="form-label">Horas</label>
+                            <input type="number" class="form-control bg-dark text-white">
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -150,7 +186,7 @@
                                 <div class="list-group-item pb-3 border-0 bg-warning h-100 d-flex flex-column justify-content-end mt-5">
                                     <div class="d-flex justify-content-between">
                                         <button type="button" class="btn btn-outline-dark" (click)="prev()"><</button>
-                                        <button type="button" class="btn btn-outline-dark">Guardar</button>
+                                        <button type="button" class="btn btn-outline-dark w-75">Guardar</button>
                                     </div>
                                 </div>
                             </div>
