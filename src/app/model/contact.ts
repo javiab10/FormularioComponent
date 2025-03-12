@@ -9,6 +9,7 @@ import { WorkExperience } from "./work/work-experience";
 export class Contact {
     private id: number;
     private name: string;
+    // private surname: string;
     private phone: string;
     private email: string;
     private location: Location;
@@ -20,6 +21,7 @@ export class Contact {
     private minSalary: number;
     private maxSalary: number;
     private state: State; //Hecho
+    // private level: Level;
 
     constructor(id: number, name: string, phone: string, email: string, location: Location, education: Education[], languages: Language[], workExperience: WorkExperience[] | undefined, source: Source, technologies: Technology[], minSalary: number, maxSalary: number, state: State) {
         this.id = id;
